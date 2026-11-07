@@ -4,6 +4,7 @@
 
 **Assignment:** Assignment 3 — Character REST API
 **Course:** CSC 340 — Software Engineering
+
 **Project:** Pokémon Character REST API
 
 ## Project Description
@@ -78,6 +79,7 @@ Name searching supports partial, case-insensitive matches.
 `GET /api/characters`
 
 Returns:
+
 {
     "name": "Clefairy",
     "region": "Kanto",
@@ -86,6 +88,7 @@ Returns:
     "description": "A friendly Fairy Pokémon known for its adorable appearance and love of moonlight.",
     "characterId": 2
   },
+
   {
     "name": "Riolu",
     "region": "Sinnoh",
@@ -94,6 +97,7 @@ Returns:
     "description": "A Fighting-type Pokémon that senses emotions and communicates through aura.",
     "characterId": 3
   },
+
   {
     "name": "Chespin",
     "region": "Kalos",
@@ -102,6 +106,7 @@ Returns:
     "description": "A cheerful Grass-type Pokémon with a tough protective shell covering its head.",
     "characterId": 4
   },
+
   {
     "name": "Minccino",
     "region": "Unova",
@@ -110,6 +115,7 @@ Returns:
     "description": "A tidy Normal-type Pokémon that uses its tail to clean its surroundings.",
     "characterId": 5
   },
+
   {
     "name": "Oshawott",
     "region": "Unova",
@@ -126,6 +132,7 @@ Returns:
 `GET /api/characters/1`
 
 Returns the Pokémon with ID 1.
+
 {
     "name": "Oshawott",
     "region": "Unova",
@@ -134,6 +141,7 @@ Returns the Pokémon with ID 1.
     "description": "Oshawott is an adorable Water-type Pokémon from the Unova region. It uses the scalchop on its stomach to defend itself and attack opponents.",
     "characterId": 1
   }
+
 If the ID does not exist, the API returns `404 Not Found`.
 
 ### POST — Add a Pokémon
