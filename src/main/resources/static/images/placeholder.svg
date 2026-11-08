@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="300"
+     height="300"
+     viewBox="0 0 300 300">
+
+    <rect width="300"
+          height="300"
+          rx="20"
+          fill="#BFE3F2"/>
+
+    <circle cx="150"
+            cy="125"
+            r="65"
+            fill="#F7C6D9"/>
+
+    <path d="M85 125 H215"
+          stroke="#404653"
+          stroke-width="10"/>
+
+    <circle cx="150"
+            cy="125"
+            r="17"
+            fill="#FFFDF8"
+            stroke="#404653"
+            stroke-width="7"/>
+
+    <text x="150"
+          y="240"
+          font-family="Arial"
+          font-size="18"
+          text-anchor="middle"
+          fill="#404653">
+        No Image Available
+    </text>
+
+</svg>
