@@ -1,0 +1,249 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFFDF8;
+    color: #404653;
+}
+
+/* Navigation */
+
+nav {
+    background-color: #BFE3F2;
+    padding: 16px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #404653;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: #404653;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #C97D9A;
+}
+
+/* Header */
+
+header {
+    text-align: center;
+    background-color: #5F8FA8;
+    padding: 45px 20px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    color: #E8E4E1;
+}
+
+header p {
+    font-size: 18px;
+}
+
+/* Main content */
+
+main {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Search */
+
+.search-container {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.search-container input {
+    width: 100%;
+    max-width: 500px;
+    padding: 12px;
+    border: 2px solid #5F8FA8;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Pokemon Cards */
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.character-card {
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(64, 70, 83, 0.12);
+    transition: transform 0.2s;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+}
+
+.character-card img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+.character-card h2 {
+    color: #5F8FA8;
+}
+
+.character-card p {
+    line-height: 1.5;
+}
+
+.button {
+    display: inline-block;
+    background-color: #F7C6D9;
+    color: #404653;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.button:hover {
+    background-color: #C97D9A;
+    color: white;
+}
+
+/* Details page */
+
+.details-container {
+    background-color: #FFFFFF;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(64, 70, 83, 0.12);
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.details-container img {
+    width: 350px;
+    max-width: 100%;
+}
+
+.details-text h2 {
+    color: #5F8FA8;
+}
+
+.details-text {
+    line-height: 1.7;
+}
+
+/* About page */
+
+.about-container {
+    background-color: #FFFFFF;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(64, 70, 83, 0.12);
+    text-align: center;
+    line-height: 1.7;
+}
+
+.about-container img {
+    width: 250px;
+    max-width: 100%;
+}
+
+/* Form */
+
+.character-form {
+    background-color: #FFFFFF;
+    max-width: 700px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(64, 70, 83, 0.12);
+}
+
+.character-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 6px;
+}
+
+.character-form input,
+.character-form select,
+.character-form textarea {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #E8E4E1;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.character-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.character-form button {
+    margin-top: 25px;
+    padding: 12px 20px;
+    border: none;
+    background-color: #F7C6D9;
+    color: #404653;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.character-form button:hover {
+    background-color: #C97D9A;
+    color: white;
+}
+
+/* Footer */
+
+footer {
+    background-color: #BFE3F2;
+    color: #404653;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* Success Messages */
+
+.success-message {
+    background-color: #E6F4EA;
+    color: #286140;
+    border: 1px solid #A5D6B0;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: center;
+    font-weight: bold;
+}
