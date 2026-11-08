@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PokemonUiController {
@@ -20,9 +21,15 @@ public class PokemonUiController {
 
     // Display all Pokemon
     @GetMapping("/")
-    public String showGallery(Model model) {
+    public String showGallery(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String region,
+            Model model) {
 
-        model.addAttribute("characters", pokemonService.getAllPokemon());
+        model.addAttribute("characters", pokemonService.searchPokemon(name, region));
+
+        model.addAttribute("name", name == null ? "" : name);
+        model.addAttribute("region", region == null ? "" : region);
 
         return "index";
     }

@@ -9,13 +9,61 @@
 
     <main>
 
-        <div class="search-container">
-            <input
-                type="text"
-                placeholder="Search Pokémon by name..."
-                aria-label="Search Pokemon"
-            >
-        </div>
+        <form action="/" method="get" class="search-container">
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Search Pokémon by name..."
+            value="${name!''}"
+            aria-label="Search Pokémon by name"
+        >
+
+        <select name="region" aria-label="Filter Pokémon by region">
+            <option value="">All Regions</option>
+
+            <option value="Kanto" <#if region == "Kanto">selected</#if>>
+            Kanto
+            </option>
+
+            <option value="Johto" <#if region == "Johto">selected</#if>>
+            Johto
+            </option>
+
+            <option value="Hoenn" <#if region == "Hoenn">selected</#if>>
+            Hoenn
+            </option>
+
+            <option value="Sinnoh" <#if region == "Sinnoh">selected</#if>>
+            Sinnoh
+            </option>
+
+            <option value="Unova" <#if region == "Unova">selected</#if>>
+            Unova
+            </option>
+
+            <option value="Kalos" <#if region == "Kalos">selected</#if>>
+            Kalos
+            </option>
+
+            <option value="Alola" <#if region == "Alola">selected</#if>>
+            Alola
+            </option>
+
+            <option value="Galar" <#if region == "Galar">selected</#if>>
+            Galar
+            </option>
+
+            <option value="Paldea" <#if region == "Paldea">selected</#if>>
+            Paldea
+            </option>
+        </select>
+
+        <button type="submit" class="button">Search</button>
+
+        <a href="/" class="button">Clear</a>
+
+    </form>
 
         <section class="character-grid">
 

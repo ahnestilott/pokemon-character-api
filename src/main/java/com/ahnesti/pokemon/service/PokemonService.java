@@ -66,4 +66,25 @@ public class PokemonService {
     public List<PokemonCharacter> searchPokemonByName(String name) {
         return pokemonRepository.findByNameContainingIgnoreCase(name);
     }
+
+    // Search Pokemon by name and/or region
+    public List<PokemonCharacter> searchPokemon(String name, String region) {
+
+        List<PokemonCharacter> pokemon = pokemonRepository.findAll();
+
+        if (name != null && !name.isBlank()) {
+            pokemon = pokemon.stream()
+                    .filter(p -> p.getName().toLowerCase()
+                            .contains(name.trim().toLowerCase()))
+                    .toList();
+        }
+
+        if (region != null && !region.isBlank()) {
+            pokemon = pokemon.stream()
+                    .filter(p -> p.getRegion().equalsIgnoreCase(region.trim()))
+                    .toList();
+        }
+
+        return pokemon;
+    }
 }
