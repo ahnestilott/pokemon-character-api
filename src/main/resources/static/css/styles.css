@@ -247,3 +247,69 @@ footer {
     text-align: center;
     font-weight: bold;
 }
+
+/* Pokemon Details Page */
+
+.pokemon-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+
+    background-color: white;
+    padding: 40px;
+    margin: 30px auto;
+    max-width: 950px;
+
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.details-image img {
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.details-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.details-info h2 {
+    color: #5F8FA8;
+    font-size: 30px;
+}
+
+.details-info p {
+    line-height: 1.8;
+}
+
+.details-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.details-actions form {
+    margin: 0;
+}
+
+.delete-button {
+    background-color: #F7C6D9;
+    border: none;
+    cursor: pointer;
+}
+
+.error-page {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.error-page h2 {
+    color: #5F8FA8;
+}
