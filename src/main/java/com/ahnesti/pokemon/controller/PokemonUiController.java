@@ -4,6 +4,7 @@ import com.ahnesti.pokemon.entity.PokemonCharacter;
 import com.ahnesti.pokemon.service.PokemonService;
 
 import jakarta.validation.Valid;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +43,10 @@ public class PokemonUiController {
 
     // Display one Pokemon
     @GetMapping("/characters/{id}")
-    public String showDetails(@PathVariable Long id, Model model) {
+    public String showDetails(
+            @PathVariable Long id,
+            Model model,
+            HttpServletResponse response) {
 
         try {
             PokemonCharacter pokemon = pokemonService.getPokemonById(id);
@@ -57,7 +61,12 @@ public class PokemonUiController {
                 throw e;
             }
 
-            model.addAttribute("errorMessage", "Sorry! That Pokémon could not be found.");
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
+            model.addAttribute(
+                    "errorMessage",
+                    "Sorry! That Pokémon could not be found."
+            );
 
             return "error";
         }
@@ -105,7 +114,7 @@ public class PokemonUiController {
 
     // Display the Edit Pokemon form
     @GetMapping("/characters/{id}/edit")
-    public String showEditForm(@PathVariable Long id, Model model) {
+    public String showEditForm(@PathVariable Long id, Model model, HttpServletResponse response) {
 
         try {
             PokemonCharacter pokemon = pokemonService.getPokemonById(id);
@@ -125,6 +134,8 @@ public class PokemonUiController {
             model.addAttribute("errorMessage",
                     "Sorry! That Pokémon could not be found.");
 
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
             return "error";
         }
     }
@@ -136,7 +147,8 @@ public class PokemonUiController {
             @Valid @ModelAttribute("pokemon") PokemonCharacter pokemon,
             BindingResult bindingResult,
             Model model,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,
+            HttpServletResponse response) {
 
         try {
             // Verify that this Pokemon exists
@@ -172,6 +184,8 @@ public class PokemonUiController {
             model.addAttribute("errorMessage",
                     "Sorry! That Pokémon could not be found.");
 
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
             return "error";
         }
     }
@@ -181,7 +195,8 @@ public class PokemonUiController {
     public String deletePokemon(
             @PathVariable Long id,
             Model model,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes,
+            HttpServletResponse response) {
 
         try {
             // Find the Pokemon before deleting it
@@ -213,8 +228,16 @@ public class PokemonUiController {
                     "Sorry! That Pokémon could not be found."
             );
 
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
             return "error";
         }
+    }
+
+    // Display the About page
+    @GetMapping("/about")
+    public String showAbout() {
+        return "about";
     }
 
 }

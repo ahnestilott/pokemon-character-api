@@ -361,3 +361,34 @@ footer {
     max-width: 600px;
     text-align: center;
 }
+
+/* About Page */
+
+.about-architecture {
+    background-color: white;
+    max-width: 950px;
+    margin: 30px auto;
+    padding: 35px 40px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.about-architecture h2 {
+    color: #5F8FA8;
+    margin-bottom: 20px;
+}
+
+.about-architecture p {
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.architecture-flow {
+    background-color: #BFE3F2;
+    color: #404653;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    margin: 25px 0;
+}

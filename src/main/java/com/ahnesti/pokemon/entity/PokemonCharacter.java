@@ -24,6 +24,8 @@ public class PokemonCharacter {
     private String type;
 
     private String image;
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @NotBlank(message = "Description is required")
     @Column(nullable = false, length = 1000)
@@ -83,6 +85,14 @@ public class PokemonCharacter {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getDescription() {
