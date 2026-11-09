@@ -176,4 +176,45 @@ public class PokemonUiController {
         }
     }
 
+    // Delete an existing Pokemon
+    @PostMapping("/characters/{id}/delete")
+    public String deletePokemon(
+            @PathVariable Long id,
+            Model model,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            // Find the Pokemon before deleting it
+            PokemonCharacter pokemon = pokemonService.getPokemonById(id);
+
+            // Save its name for the success message
+            String pokemonName = pokemon.getName();
+
+            // Delete the Pokemon from Neon
+            pokemonService.deletePokemon(id);
+
+            // Display success message on the gallery
+            redirectAttributes.addFlashAttribute(
+                    "successMessage",
+                    pokemonName + " was successfully removed!"
+            );
+
+            // Redirect to the homepage
+            return "redirect:/";
+
+        } catch (ResponseStatusException e) {
+
+            if (e.getStatusCode().value() != 404) {
+                throw e;
+            }
+
+            model.addAttribute(
+                    "errorMessage",
+                    "Sorry! That Pokémon could not be found."
+            );
+
+            return "error";
+        }
+    }
+
 }
