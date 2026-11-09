@@ -71,16 +71,14 @@
 
                 <div class="character-card">
 
-                    <#if pokemon.image?? && pokemon.image?has_content>
+                    <#if pokemon.imageUrl?? && pokemon.imageUrl?has_content>
                         <img
-                            src="${pokemon.image}"
+                            src="${pokemon.imageUrl}"
                             alt="${pokemon.name}"
-                        >
+                            onerror="this.onerror=null;this.src='/images/placeholder.svg';">
                     <#else>
-                        <img
-                            src="/images/placeholder.svg"
-                            alt="No image available"
-                        >
+                        <img src="/images/placeholder.svg"
+                             alt="No image available">
                     </#if>
 
                     <h2>${pokemon.name}</h2>

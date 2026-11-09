@@ -13,8 +13,8 @@
 
             <div class="details-image">
 
-                <#if pokemon.image?? && pokemon.image?has_content>
-                    <img src="${pokemon.image}" alt="${pokemon.name}">
+                <#if pokemon.imageUrl?? && pokemon.imageUrl?has_content>
+                    <img src="${pokemon.imageUrl}" alt="${pokemon.name}">
                 <#else>
                     <img src="/images/placeholder.svg"
                          alt="No image available">

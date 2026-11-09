@@ -48,16 +48,28 @@ public class PokemonService {
     // Update an existing Pokemon
     public PokemonCharacter updatePokemon(Long id, PokemonCharacter updatedPokemon) {
 
+        // Find the existing Pokemon
         PokemonCharacter pokemon = getPokemonById(id);
 
+        // Update its information
         pokemon.setName(updatedPokemon.getName());
         pokemon.setRegion(updatedPokemon.getRegion());
         pokemon.setType(updatedPokemon.getType());
-        pokemon.setImage(updatedPokemon.getImage());
         pokemon.setDescription(updatedPokemon.getDescription());
 
+        // Keep both image fields synchronized
+        String imageUrl = updatedPokemon.getImageUrl();
+
+        if (imageUrl == null) {
+            imageUrl = updatedPokemon.getImage();
+        }
+
+        pokemon.setImageUrl(imageUrl);
+        pokemon.setImage(imageUrl);
+
+        // Save changes to the existing record
         return pokemonRepository.save(pokemon);
-    }
+    }   
 
     // Delete Pokemon
     public void deletePokemon(Long id) {

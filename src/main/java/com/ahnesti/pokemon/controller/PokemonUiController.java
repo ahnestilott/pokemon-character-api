@@ -103,4 +103,77 @@ public class PokemonUiController {
         return "redirect:/";
     }
 
+    // Display the Edit Pokemon form
+    @GetMapping("/characters/{id}/edit")
+    public String showEditForm(@PathVariable Long id, Model model) {
+
+        try {
+            PokemonCharacter pokemon = pokemonService.getPokemonById(id);
+
+            model.addAttribute("pokemon", pokemon);
+            model.addAttribute("actionUrl", "/characters/" + id);
+            model.addAttribute("isEdit", true);
+
+            return "character-form";
+
+        } catch (ResponseStatusException e) {
+
+            if (e.getStatusCode().value() != 404) {
+                throw e;
+            }
+
+            model.addAttribute("errorMessage",
+                    "Sorry! That Pokémon could not be found.");
+
+            return "error";
+        }
+    }
+
+    // Save changes to an existing Pokemon
+    @PostMapping("/characters/{id}")
+    public String editPokemon(
+            @PathVariable Long id,
+            @Valid @ModelAttribute("pokemon") PokemonCharacter pokemon,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            // Verify that this Pokemon exists
+            pokemonService.getPokemonById(id);
+
+            if (bindingResult.hasErrors()) {
+                pokemon.setCharacterId(id);
+
+                model.addAttribute("actionUrl", "/characters/" + id);
+                model.addAttribute("isEdit", true);
+                model.addAttribute("errorMessage",
+                        "Please fill out all required fields correctly.");
+
+                return "character-form";
+            }
+
+            PokemonCharacter updatedPokemon =
+                    pokemonService.updatePokemon(id, pokemon);
+
+            redirectAttributes.addFlashAttribute(
+                    "successMessage",
+                    updatedPokemon.getName() + " was successfully updated!"
+            );
+
+            return "redirect:/characters/" + id;
+
+        } catch (ResponseStatusException e) {
+
+            if (e.getStatusCode().value() != 404) {
+                throw e;
+            }
+
+            model.addAttribute("errorMessage",
+                    "Sorry! That Pokémon could not be found.");
+
+            return "error";
+        }
+    }
+
 }
