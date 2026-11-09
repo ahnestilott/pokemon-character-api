@@ -34,6 +34,14 @@ public class PokemonService {
     // Add a new Pokemon
     public PokemonCharacter addPokemon(PokemonCharacter pokemon) {
         pokemon.setCharacterId(null);
+
+        // Keep image and imageUrl synchronized
+        if (pokemon.getImageUrl() != null && !pokemon.getImageUrl().isBlank()) {
+            pokemon.setImage(pokemon.getImageUrl());
+        } else if (pokemon.getImage() != null && !pokemon.getImage().isBlank()) {
+            pokemon.setImageUrl(pokemon.getImage());
+        }
+
         return pokemonRepository.save(pokemon);
     }
 

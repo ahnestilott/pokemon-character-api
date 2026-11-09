@@ -3,12 +3,18 @@ package com.ahnesti.pokemon.controller;
 import com.ahnesti.pokemon.entity.PokemonCharacter;
 import com.ahnesti.pokemon.service.PokemonService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PokemonUiController {
@@ -56,4 +62,45 @@ public class PokemonUiController {
             return "error";
         }
     }
+
+    // Display the Add Pokemon form
+    @GetMapping("/characters/new")
+    public String showAddForm(Model model) {
+
+        model.addAttribute("pokemon", new PokemonCharacter());
+        model.addAttribute("actionUrl", "/characters");
+
+        return "character-form";
+    }
+
+    // Save a new Pokemon
+    @PostMapping("/characters")
+    public String addPokemon(
+            @Valid @ModelAttribute("pokemon") PokemonCharacter pokemon,
+            BindingResult bindingResult,
+            Model model,
+            RedirectAttributes redirectAttributes) {
+
+        // Check for invalid form data
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("actionUrl", "/characters");
+            model.addAttribute("errorMessage",
+                    "Please fill out all required fields correctly.");
+
+            return "character-form";
+        }
+
+        // Save Pokemon to Neon
+        PokemonCharacter savedPokemon = pokemonService.addPokemon(pokemon);
+
+        // Display a success message after redirecting
+        redirectAttributes.addFlashAttribute(
+                "successMessage",
+                savedPokemon.getName() + " was successfully added!"
+        );
+
+        // Return to the gallery
+        return "redirect:/";
+    }
+
 }
